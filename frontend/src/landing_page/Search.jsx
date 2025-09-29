@@ -265,11 +265,7 @@ footer{margin-top:40px;padding:28px;background:#02203a;color:white;border-radius
               <a href="#foods">Foods</a><br />
               <a href="#handicrafts">Handicrafts</a>
             </div>
-            <div>
-              <h4 style={{ margin: '0 0 6px' }}>Contact</h4>
-              <div style={{ color: 'rgba(255,255,255,0.8)' }}>support@jaipurtravel.example</div>
-              <div style={{ color: 'rgba(255,255,255,0.8)', marginTop: 6 }}>+91 98765 43210</div>
-            </div>
+            
           </div>
         </div>
       </footer>

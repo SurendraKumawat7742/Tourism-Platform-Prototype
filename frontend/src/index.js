@@ -13,10 +13,7 @@ root.render(
   <HashRouter >
     <Navbar />
     <SecondNavbar />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/search" element={<Search />} />
-    </Routes>
+    <Search />
     <Footer />
   </HashRouter>
 );

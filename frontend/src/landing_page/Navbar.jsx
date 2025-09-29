@@ -16,7 +16,7 @@ function Navbar() {
                 style={{ width: "50px", borderRadius: "10px", marginRight:"5px"}}
               />
         <a class="navbar-brand" href="#">
-          Navbar
+          NavikVerse
         </a>
         <button
           class="navbar-toggler"
