@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jaipur — Discover the Pink City</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#ff6b35; /* warm orange */
+      --accent-2:#0d6efd; /* blue */
+      --muted:#6b7280;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.7);
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(15,23,42,0.08);
+      --max-width:1200px;
+      --gap:18px;
+      color-scheme: light;
+    }
+
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,#fff 0%, #fbfcfe 100%); color:#07203a}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+
+    /* Container */
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.7);backdrop-filter: blur(6px);border-bottom:1px solid rgba(15,23,42,0.04)}
+    .nav-inner{display:flex;align-items:center;gap:16px;padding:10px 22px;max-width:var(--max-width);margin:0 auto}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:46px;width:46px;border-radius:10px;object-fit:cover}
+    .brand h1{font-family:'Playfair Display',serif;font-size:18px;margin:0}
+
+    .nav-left{display:flex;align-items:center;gap:14px}
+    .nav-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+
+    .nav a.button{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(255,107,53,0.18)}
+    .nav a.ghost{padding:8px 12px;border-radius:8px;border:1px solid rgba(7,32,58,0.06);background:transparent}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 0}
+    .hero-card{padding:36px;background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));border-radius:18px;box-shadow:var(--shadow)}
+    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#ff9a6a);color:white;font-weight:700;font-size:12px}
+    .hero h2{font-family:'Playfair Display',serif;font-size:36px;margin:14px 0 8px}
+    .hero p.lead{margin:0;color:var(--muted);line-height:1.6}
+
+    .search-row{display:flex;gap:10px;margin-top:20px}
+    .search-row input[type="search"]{flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(7,32,58,0.06);font-size:15px}
+    .search-row button{padding:12px 16px;border-radius:12px;border:none;background:var(--accent-2);color:white;font-weight:700;cursor:pointer}
+
+    .hero-cta{margin-top:18px;display:flex;gap:12px}
+    .cta-primary{background:var(--accent);color:white;padding:12px 16px;border-radius:12px;border:none;font-weight:700}
+    .cta-ghost{background:transparent;border:1px solid rgba(7,32,58,0.06);padding:10px 14px;border-radius:12px}
+
+    /* Filters */
+    .filters{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid rgba(7,32,58,0.06);background:var(--card);cursor:pointer;font-weight:600}
+    .chip.active{background:linear-gradient(90deg,var(--accent),#ff9a6a);color:white;border:none}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    .card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .card .imgwrap{height:200px;overflow:hidden}
+    .card .imgwrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .card:hover .imgwrap img{transform:scale(1.06)}
+    .card-body{padding:16px;display:flex;flex-direction:column;gap:10px}
+    .card h3{margin:0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+    .pill{padding:6px 10px;border-radius:999px;font-weight:700;background:rgba(13,110,253,0.08);color:var(--accent-2);font-size:13px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.5);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal .sheet{background:white;border-radius:16px;max-width:880px;width:96%;box-shadow:0 30px 60px rgba(2,6,23,0.4);overflow:hidden}
+    .sheet .left{width:45%;float:left}
+    .sheet .right{width:55%;float:right;padding:22px}
+    .sheet img{height:100%;width:100%;object-fit:cover}
+
+    /* Hero gallery (small) */
+    .hero-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;border-radius:12px;overflow:hidden}
+    .hero-gallery img{height:130px;object-fit:cover}
+
+    /* Floating chat */
+    .chat-btn{position:fixed;right:20px;bottom:20px;background:linear-gradient(180deg,var(--accent),#ff8a5a);color:white;border:none;padding:14px;border-radius:999px;box-shadow:0 10px 30px rgba(255,107,53,0.2);cursor:pointer;font-weight:800;z-index:80}
+    .chat-panel{position:fixed;right:20px;bottom:90px;width:360px;max-width:calc(100% - 40px);border-radius:12px;background:white;box-shadow:0 20px 60px rgba(2,6,23,0.25);overflow:hidden;display:none;flex-direction:column;z-index:80}
+    .chat-panel .head{padding:12px 14px;background:linear-gradient(90deg,var(--accent),#ff9a6a);color:white;font-weight:700}
+    .chat-panel .body{padding:12px;height:260px;overflow:auto}
+    .chat-panel .input{display:flex;padding:10px;border-top:1px solid rgba(2,6,23,0.04)}
+    .chat-panel input{flex:1;padding:10px;border-radius:8px;border:1px solid rgba(2,6,23,0.06)}
+    .chat-panel button{margin-left:8px;padding:10px 12px;border-radius:8px;border:none;background:var(--accent-2);color:white}
+
+    /* Footer */
+    footer{margin-top:40px;padding:28px;background:#02203a;color:white;border-radius:16px}
+    footer .cols{display:flex;gap:24px;max-width:var(--max-width);margin:0 auto}
+    footer a{color:rgba(255,255,255,0.9)}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 320px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:720px){
+      .nav-inner{padding:12px}
+      .hero{grid-template-columns:1fr;}
+      .hero-card{order:2}
+      .grid{grid-template-columns:1fr}
+      .sheet .left,.sheet .right{width:100%;float:none}
+    }
+
+    /* small polish */
+    .muted{color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="brand nav-left">
+        <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b3df5d3b6f4b0d0e6f0b8a4e7e4e1d9" alt="Jaipur logo">
+        <div>
+          <h1>Jaipur Travel</h1>
+          <div style="font-size:12px;color:var(--muted)">Explore the Pink City</div>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <a class="ghost" href="#places">Places</a>
+        <a class="ghost" href="#foods">Foods</a>
+        <a class="ghost" href="#handicrafts">Handicrafts</a>
+        <a class="ghost" href="#cafes">Cafes</a>
+        <select aria-label="Language select" style="padding:8px;border-radius:10px;border:1px solid rgba(2,6,23,0.06)">
+          <option>English</option>
+          <option>हिन्दी</option>
+        </select>
+        <a class="button" href="#book">Book Trip</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-card">
+          <span class="kicker">Featured</span>
+          <h2 id="hero-title">Discover the Pink City — Jaipur</h2>
+          <p class="lead">Palaces, colourful bazaars, majestic forts and unforgettable food. Plan a trip that mixes royal history with warm Rajasthani hospitality.</p>
+
+          <div class="search-row" role="search" aria-label="Search for places">
+            <input type="search" id="main-search" placeholder="Search places, food, experiences..." aria-label="Search" />
+            <button id="search-btn">Search</button>
+          </div>
+
+          <div class="hero-cta">
+            <button class="cta-primary" id="plan-trip">Plan Your Trip</button>
+            <button class="cta-ghost" id="explore-map">View Map</button>
+          </div>
+
+          <div style="margin-top:18px">
+            <small class="muted">Popular:</small>
+            <div class="filters" id="filter-row">
+              <button class="chip active" data-filter="all">All</button>
+              <button class="chip" data-filter="heritage">Heritage</button>
+              <button class="chip" data-filter="food">Food</button>
+              <button class="chip" data-filter="shopping">Shopping</button>
+              <button class="chip" data-filter="nature">Nature</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- right: small gallery -->
+        <aside>
+          <div style="border-radius:14px;overflow:hidden;box-shadow:var(--shadow)">
+            <div class="hero-gallery">
+              <img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/banners/desk/14.jpg" alt="Hawa Mahal">
+              <img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/105.jpg" alt="Jal Mahal">
+              <img src="https://media.gettyimages.com/id/1394553603/photo/hawa-mahal.jpg?s=612x612&w=0&k=20&c=aG3m2UaQcuGijvR8MJs54W3c6gr5x_KAboedtslHsvQ=" alt="Hawa Mahal 2">
+              <img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/experience/shopping-in-rajasthan/Jewellery.jpg" alt="Local crafts">
+            </div>
+          </div>
+          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Pro tip: Early mornings are best for monuments — fewer crowds and softer light for photos.</div>
+        </aside>
+      </section>
+
+      <!-- GRID OF CARDS -->
+      <section id="places">
+        <h2 style="font-family:'Playfair Display',serif">Famous Places</h2>
+        <p class="muted">Tap any card to read more about the place, timings, ticket info and nearby eats.</p>
+
+        <div class="grid" id="cards-grid" aria-live="polite">
+          <!-- card (repeat) -->
+          <article class="card" data-category="heritage">
+            <div class="imgwrap"><img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/125.jpg" alt="Amber Palace"></div>
+            <div class="card-body">
+              <h3>Amber Palace</h3>
+              <p class="muted">A hilltop palace blending Rajput and Mughal architecture — don't miss the Sheesh Mahal.</p>
+              <div class="meta">
+                <span class="pill">11 km from city</span>
+                <button class="chip" onclick="openModal('Amber Palace','https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/125.jpg','Amber Palace - detailed text...')">Explore</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-category="heritage">
+            <div class="imgwrap"><img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/103.jpg" alt="City Palace"></div>
+            <div class="card-body">
+              <h3>City Palace</h3>
+              <p class="muted">A magnificent complex in the heart of Jaipur with museums and royal collections.</p>
+              <div class="meta">
+                <span class="pill">Historic</span>
+                <button class="chip" onclick="openModal('City Palace','https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/103.jpg','City Palace - detailed text...')">Explore</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-category="heritage">
+            <div class="imgwrap"><img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/124.jpg" alt="Jaigarh Fort"></div>
+            <div class="card-body">
+              <h3>Jaigarh Fort</h3>
+              <p class="muted">Known for the world’s largest cannon and impressive fortifications.</p>
+              <div class="meta">
+                <span class="pill">Photo spot</span>
+                <button class="chip" onclick="openModal('Jaigarh Fort','https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/124.jpg','Jaigarh Fort - detailed text...')">Explore</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-category="food">
+            <div class="imgwrap"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/09/14/d0/the-cuisine-that-originated.jpg?w=800&h=800&s=1" alt="Rajasthani Food"></div>
+            <div class="card-body">
+              <h3>Local Cuisine</h3>
+              <p class="muted">Try Dal Baati Churma, Laal Maas & pyaaz kachori at authentic local eateries.</p>
+              <div class="meta">
+                <span class="pill">Cuisine</span>
+                <button class="chip" onclick="openModal('Rajasthani Food','https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/09/14/d0/the-cuisine-that-originated.jpg?w=800&h=800&s=1','Food - detailed text...')">Explore</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-category="shopping">
+            <div class="imgwrap"><img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/experience/shopping-in-rajasthan/Jewellery.jpg" alt="Handicrafts"></div>
+            <div class="card-body">
+              <h3>Local Handicrafts</h3>
+              <p class="muted">Shop textiles, block-prints, jewellery and blue pottery in Johari and Bapu Bazaars.</p>
+              <div class="meta">
+                <span class="pill">Souvenirs</span>
+                <button class="chip" onclick="openModal('Handicrafts','https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/experience/shopping-in-rajasthan/Jewellery.jpg','Handicrafts - detailed text...')">Explore</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-category="heritage">
+            <div class="imgwrap"><img src="https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/105.jpg" alt="Jal Mahal"></div>
+            <div class="card-body">
+              <h3>Jal Mahal</h3>
+              <p class="muted">A picturesque palace in the middle of Man Sagar Lake — best viewed at sunset.</p>
+              <div class="meta">
+                <span class="pill">Iconic</span>
+                <button class="chip" onclick="openModal('Jal Mahal','https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/105.jpg','Jal Mahal - detailed text...')">Explore</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Foods section small preview -->
+      <section id="foods" style="margin-top:30px">
+        <h2 style="font-family:'Playfair Display',serif">Popular Eats</h2>
+        <p class="muted">Top-rated restaurants & where to try local dishes.</p>
+        <div class="grid" style="margin-top:14px">
+          <article class="card" data-category="food">
+            <div class="imgwrap"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/69/6f/af/house-of-han-crowne-plaza.jpg?w=800&h=800&s=1" alt="Restaurant"></div>
+            <div class="card-body">
+              <h3>Peshawri</h3>
+              <p class="muted">Famous for its rustic kebabs, inside ITC Rajputana.</p>
+              <div class="meta"><span class="pill">Fine Dining</span><button class="chip" onclick="openModal('Peshawri','https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/69/6f/af/house-of-han-crowne-plaza.jpg?w=800&h=800&s=1','Peshawri - details...')">Explore</button></div>
+            </div>
+          </article>
+
+          <article class="card" data-category="food">
+            <div class="imgwrap"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/37/f4/9b/chaandi-restaurant.jpg?w=800&h=800&s=1" alt="Chaandi restaurant"></div>
+            <div class="card-body">
+              <h3>Chaandi</h3>
+              <p class="muted">Local favourites and thali specials.</p>
+              <div class="meta"><span class="pill">Casual</span><button class="chip" onclick="openModal('Chaandi','https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/37/f4/9b/chaandi-restaurant.jpg?w=800&h=800&s=1','Chaandi - details...')">Explore</button></div>
+            </div>
+          </article>
+
+          <article class="card" data-category="food">
+            <div class="imgwrap"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ee/13/44/cinnamon.jpg?w=800&h=800&s=1" alt="Cinnamon restaurant"></div>
+            <div class="card-body">
+              <h3>Cinnamon</h3>
+              <p class="muted">Trendy cafe in the old city with great desserts.</p>
+              <div class="meta"><span class="pill">Cafe</span><button class="chip" onclick="openModal('Cinnamon','https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ee/13/44/cinnamon.jpg?w=800&h=800&s=1','Cinnamon - details...')">Explore</button></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div> <!-- container -->
+  </main>
+
+  <!-- Modal for 'Explore' -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex;flex-wrap:wrap">
+        <div class="left"><img id="modal-img" src="" alt=""></div>
+        <div class="right">
+          <h3 id="modal-title">Title</h3>
+          <p id="modal-desc" class="muted">Description</p>
+          <div style="margin-top:16px;display:flex;gap:10px">
+            <button class="cta-primary" onclick="closeModal()">Close</button>
+            <a href="#" class="chip">Get Tickets</a>
+            <a href="#" class="chip">Nearby Cafes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat UI -->
+  <button class="chat-btn" id="chat-btn" aria-haspopup="dialog" aria-expanded="false">💬 Help</button>
+  <div class="chat-panel" id="chat-panel" role="dialog" aria-hidden="true">
+    <div class="head">Ask Jaipur Travel</div>
+    <div class="body" id="chat-body">
+      <div style="padding:8px;background:#f1f5f9;border-radius:8px;margin-bottom:8px">Hi 👋 I can help with places, food or itinerary. Try: "Best view at sunset"</div>
+    </div>
+    <div class="input">
+      <input id="chat-input" placeholder="Type a question..." aria-label="Chat input" />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="max-width:var(--max-width);margin:0 auto;display:flex;justify-content:space-between;gap:20px;align-items:flex-start">
+      <div style="max-width:520px">
+        <h3 style="margin:0 0 8px;font-family:'Playfair Display',serif">Jaipur Travel</h3>
+        <p style="margin:0;color:rgba(255,255,255,0.85)">Plan your royal escape: curated experiences, trusted guides and local stories.</p>
+      </div>
+      <div style="display:flex;gap:24px">
+        <div>
+          <h4 style="margin:0 0 6px">Explore</h4>
+          <a href="#places">Places</a><br>
+          <a href="#foods">Foods</a><br>
+          <a href="#handicrafts">Handicrafts</a>
+        </div>
+        <div>
+          <h4 style="margin:0 0 6px">Contact</h4>
+          <div style="color:rgba(255,255,255,0.8)">support@jaipurtravel.example</div>
+          <div style="color:rgba(255,255,255,0.8);margin-top:6px">+91 98765 43210</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple filter behavior
+    const chips = document.querySelectorAll('.filters .chip');
+    const cards = document.querySelectorAll('#cards-grid .card');
+    chips.forEach(ch => ch.addEventListener('click', ()=>{
+      chips.forEach(c=>c.classList.remove('active'));
+      ch.classList.add('active');
+      const f = ch.dataset.filter;
+      cards.forEach(card=>{
+        if(f === 'all') card.style.display = 'flex';
+        else card.style.display = card.dataset.category === f ? 'flex' : 'none';
+      })
+    }))
+
+    // Modal
+    const modal = document.getElementById('modal');
+    function openModal(title,img,desc){
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-img').src = img;
+      document.getElementById('modal-img').alt = title;
+      document.getElementById('modal-desc').textContent = desc;
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); }
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); })
+
+    // Search (basic client-side fuzzy search)
+    document.getElementById('search-btn').addEventListener('click', ()=>{
+      const q = document.getElementById('main-search').value.trim().toLowerCase();
+      if(!q) { cards.forEach(c=>c.style.display='flex'); return }
+      cards.forEach(c=>{
+        const t = c.querySelector('h3').textContent.toLowerCase();
+        const d = c.querySelector('p').textContent.toLowerCase();
+        c.style.display = (t.includes(q) || d.includes(q)) ? 'flex' : 'none';
+      })
+    })
+
+    // Floating chat toggle
+    const chatBtn = document.getElementById('chat-btn');
+    const chatPanel = document.getElementById('chat-panel');
+    chatBtn.addEventListener('click', ()=>{
+      const open = chatPanel.style.display === 'flex';
+      chatPanel.style.display = open ? 'none' : 'flex';
+      chatBtn.setAttribute('aria-expanded', String(!open));
+      chatPanel.setAttribute('aria-hidden', String(open));
+    })
+
+    // chat send - simple local responses (placeholder)
+    document.getElementById('chat-send').addEventListener('click', ()=>{
+      const input = document.getElementById('chat-input');
+      const v = input.value.trim(); if(!v) return;
+      const el = document.createElement('div'); el.style.margin='8px 0'; el.style.padding='8px'; el.style.background='#eef2ff'; el.style.borderRadius='8px'; el.textContent = 'You: ' + v;
+      document.getElementById('chat-body').appendChild(el);
+      input.value='';
+      setTimeout(()=>{
+        const bot = document.createElement('div'); bot.style.margin='8px 0'; bot.style.padding='8px'; bot.style.background='#f1f5f9'; bot.style.borderRadius='8px'; bot.textContent = 'Agent: Thanks! For that I recommend checking "Places" or ask for recommendations like "best sunset spot".'; document.getElementById('chat-body').appendChild(bot);
+        document.getElementById('chat-body').scrollTop = document.getElementById('chat-body').scrollHeight;
+      },600)
+    })
+
+    // keyboard enter
+    document.getElementById('chat-input').addEventListener('keydown', function(e){ if(e.key === 'Enter') document.getElementById('chat-send').click(); })
+
+    // small accessibility: focus trap modal when opened (basic)
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+    // Make internal anchor smooth
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){ e.preventDefault(); document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'}); }
+      })
+    })
+
+  </script>
+</body>
+</html>
