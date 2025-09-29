@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {HashRouter, Routes, Route} from 'react-router-dom';
 import './index.css';
 import Home from "./landing_page/Home/home"
 import Search from "./landing_page/Search"
@@ -10,7 +10,7 @@ import SecondNavbar from "./landing_page/SecondNavbar"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter >
+  <HashRouter >
     <Navbar />
     <SecondNavbar />
     <Routes>
@@ -18,10 +18,6 @@ root.render(
       <Route path="/search" element={<Search />} />
     </Routes>
     <Footer />
-  </BrowserRouter>
+  </HashRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
