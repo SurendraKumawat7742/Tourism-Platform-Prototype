@@ -1,4 +1,5 @@
 {
+  "homepage": "https://surendrakumawat7742.github.io/Tourism-Platform-Prototype",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -12,8 +13,7 @@
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.3",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "homepage": "https://surendrakumawat7742.github.io/Tourism-Platform-Prototypecsc"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
