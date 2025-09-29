@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './index.css';
 import Home from "./landing_page/Home/home"
-// import About from "./landing_page/About"
 import Search from "./landing_page/Search"
 import Navbar from "./landing_page/Navbar"
 import Footer from "./landing_page/Footer"
+import SecondNavbar from "./landing_page/SecondNavbar"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter >
     <Navbar />
+    <SecondNavbar />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />

@@ -10,7 +10,7 @@ function Navbar() {
   };
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5 fixed-top z-3">
-      <div class="container-fluid" style={{ marginLeft: "100px" }}>
+      <div class="container-fluid " style={{ marginLeft: "100px" }}>
         <img
                 src="Images/logo.jpg "
                 style={{ width: "50px", borderRadius: "10px", marginRight:"5px"}}

@@ -46,7 +46,7 @@ export default function TourismHomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-5 mt-5 mb-5 text-center">
+    <div className=" Hero min-h-screen bg-gray-50 flex items-center justify-center p-5 mt-5 mb-5 text-center">
       <div className="p-5">
         <main>
           <h2 className="text-4xl font-bold text-center text-gray-800 mb-5">Plan Your Trip</h2>
