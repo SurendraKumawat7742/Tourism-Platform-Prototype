@@ -6,7 +6,7 @@ function Footer() {
     <div class="container-fluid" style={{ backgroundColor: "#dcdcdc" }}>
       <div class="row p-5" style={{ marginLeft: "55px" }}>
         <div class="col-2">
-          <p class="text-muted">About Tripadvisor</p>
+          <p class="text-muted">About NavikVerse</p>
           <a href="">About Us</a>
           <br></br>
           <a href="">Press</a>
@@ -19,7 +19,7 @@ function Footer() {
           <br></br>
           <a href="">Contact us</a>
           <br></br>
-          <a href="">Tripadvisor Technology Blog</a>
+          <a href="">NavikVerse Technology Blog</a>
           <br></br>
         </div>
         <div class="col-2">
@@ -57,7 +57,7 @@ function Footer() {
         </div>
         <div class="col-2"></div>
         <div class="col-4">
-          <p class="text-muted">Tripadvisor Sites</p>
+          <p class="text-muted">NavikVerse Sites</p>
           <p class="text-muted">
             Book tours and attraction tickets on <a href="">Viator</a>
           </p>
@@ -69,13 +69,13 @@ function Footer() {
           <div class="d-flex">
             <div class="col-1">
               <img
-                src="logo.jpg "
+                src="Images/logo.jpg "
                 style={{ width: "70px", borderRadius: "50px" }}
               />
             </div>
             <div class="col-7 mb-2" style={{ marginLeft: "20px" }}>
               <p class="text-muted" style={{ fontSize: "12px" }}>
-                © 2025 Tripadvisor LLC All rights reserved.
+                © 2025 NavikVerse LLC All rights reserved.
               </p>
 
               <b>
@@ -92,12 +92,12 @@ function Footer() {
             </div>
           </div>
           <p>
-            <p>This is the version of our website addressed to speakers of English in India. If you are a resident of another country or region, please select the appropriate version of Tripadvisor for your country or region in the drop-down menu.</p>{" "}
+            <p>This is the version of our website addressed to speakers of English in India. If you are a resident of another country or region, please select the appropriate version of NavikVerse for your country or region in the drop-down menu.</p>{" "}
             {showMore && (
               <span>
-                <p>Tripadvisor LLC makes no guarantees for availability of prices advertised on our sites and applications. Listed prices may require a stay of a particular length or have blackout dates, qualifications or other applicable restrictions. Tripadvisor LLC is not responsible for any content on external web sites that are not owned or operated by Tripadvisor .</p>
+                <p>NavikVerse LLC makes no guarantees for availability of prices advertised on our sites and applications. Listed prices may require a stay of a particular length or have blackout dates, qualifications or other applicable restrictions. NavikVerse LLC is not responsible for any content on external web sites that are not owned or operated by NavikVerse .</p>
 
-                <p>Tripadvisor LLC is not a booking agent or tour operator. When you book with one of our partners, please be sure to check their site for a full disclosure of all applicable fees.</p>
+                <p>NavikVerse LLC is not a booking agent or tour operator. When you book with one of our partners, please be sure to check their site for a full disclosure of all applicable fees.</p>
               </span>
             )}
           </p>

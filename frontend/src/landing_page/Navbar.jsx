@@ -5,7 +5,7 @@ function Navbar() {
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5 fixed-top z-3">
       <div class="container-fluid" style={{ marginLeft: "100px" }}>
         <img
-                src="logo.jpg "
+                src="Images/logo.jpg "
                 style={{ width: "50px", borderRadius: "10px", marginRight:"5px"}}
               />
         <a class="navbar-brand" href="#">
@@ -38,7 +38,7 @@ function Navbar() {
                 type="submit"
               >
                 <i class="fa-solid fa-magnifying-glass" />
-                <Link class="nav-link active" to="/search">
+                <Link class="nav-link active" to="/search" style={{textDecoration:"none"}}>
                 Search
                 </Link>
               </button>

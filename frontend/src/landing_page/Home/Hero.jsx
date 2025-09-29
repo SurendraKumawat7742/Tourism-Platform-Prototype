@@ -110,6 +110,7 @@ export default function TourismHomePage() {
               <button
                 type="submit"
                 className="px-3 py-2 hover:shadow-lg transition-all"
+                style={{backgroundColor:"#696FC7", border:"2px solid black", borderRadius:"10px", fontSize:"20px"}}
               >
                 SMART TRIP
               </button>
@@ -118,14 +119,14 @@ export default function TourismHomePage() {
 
           {/* Result card */}
           {result && (
-            <div className="mt-4 p-5 bg-gray-50 rounded-xl border border-black" style={{borderRadius:"10px"}}>
+            <div className="mt-4 p-5 bg-gray-50 rounded-xl border border-black" style={{borderRadius:"10px", backgroundColor:"#FFB4B4"}}>
               <h3 className="text-lg font-bold mb-2">Smart Trip Suggestions</h3>
               <p className="text-sm text-gray-700 mb-2">{result.message}</p>
               <ul className="text-sm text-gray-700 list-disc pl-5">
-                <li>From: <strong>{result.from}</strong></li>
-                <li>To: <strong>{result.to}</strong></li>
-                <li>Date: <strong>{result.date}</strong></li>
-                <li>Budget: <strong>{result.budget}</strong></li>
+                <ul>From: <strong>{result.from}</strong></ul>
+                <ul>To: <strong>{result.to}</strong></ul>
+                <ul>Date: <strong>{result.date}</strong></ul>
+                <ul>Budget: <strong>{result.budget}</strong></ul>
               </ul>
             </div>
           )}

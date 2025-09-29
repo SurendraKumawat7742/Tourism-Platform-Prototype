@@ -240,7 +240,7 @@ footer{margin-top:40px;padding:28px;background:#02203a;color:white;border-radius
         </div>
       </div>
 
-      <button className="chat-btn" id="chat-btn" aria-haspopup="dialog" aria-expanded={chatOpen} onClick={() => setChatOpen(open => !open)}>💬 Help</button>
+      <button className="chat-btn" id="chat-btn" aria-haspopup="dialog" aria-expanded={chatOpen} onClick={() => setChatOpen(open => !open)}><i class="fa-solid fa-robot"></i>&nbsp;ChatBot</button>
       <div className={`chat-panel ${chatOpen ? 'open' : ''}`} id="chat-panel" role="dialog" aria-hidden={!chatOpen}>
         <div className="head">Ask Jaipur Travel</div>
         <div className="body" id="chat-body" ref={chatBodyRef}>
