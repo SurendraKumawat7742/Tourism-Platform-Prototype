@@ -1,6 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
+
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/search');
+  };
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5 fixed-top z-3">
       <div class="container-fluid" style={{ marginLeft: "100px" }}>
@@ -35,12 +42,11 @@ function Navbar() {
               <button
                 class="btn btn-outline-success d-flex align-items-center gap-2"
                 style={{ borderRadius: "20px" }}
-                type="submit"
+                type="button"
+                onClick={handleClick}
               >
                 <i class="fa-solid fa-magnifying-glass" />
-                <Link class="nav-link active" to="/search" style={{textDecoration:"none"}}>
                 Search
-                </Link>
               </button>
             </div>
           </form>
