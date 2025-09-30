@@ -1,20 +1,19 @@
 import React from "react";
-import {Link} from "react-router-dom"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/search');
+    navigate("/search");
   };
   return (
     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5 fixed-top z-3">
       <div class="container-fluid " style={{ marginLeft: "100px" }}>
         <img
-                src="Images/logo.jpg "
-                style={{ width: "50px", borderRadius: "10px", marginRight:"5px"}}
-              />
+          src="Images/logo.jpg"
+          style={{ width: "50px", borderRadius: "10px", marginRight: "5px" }}
+        />
         <a class="navbar-brand" href="#">
           NavikVerse
         </a>
@@ -72,7 +71,7 @@ function Navbar() {
                 <option>हिन्दी</option>
               </select>
             </li>
-            <li class="nav-item dropdown" style={{marginRight:"50px"}}>
+            <li class="nav-item dropdown" style={{ marginRight: "50px" }}>
               <a
                 class="nav-link dropdown-toggle"
                 href="#"

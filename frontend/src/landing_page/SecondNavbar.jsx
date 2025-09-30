@@ -2,7 +2,7 @@ import React from 'react';
 function SecondNavbar() {
   return (
     <div class="container p-5 position-relative">
-      <div class="row mt-3 p-2" style={{backgroundColor:"#CECECE"}}>
+      <div class="row mt-2 p-2" style={{backgroundColor:"#CECECE"}}>
         <div
             class="me-auto mb-2 mb-lg-0 d-flex gap-3"
           >
